@@ -9,7 +9,7 @@ const displayPhone=phones=>{
     const phoneContainer=document.getElementById('phone-container');
     phoneContainer.innerHTML=``;
     phones=phones.slice(0,20)
-    // display no phones found:
+  // display no phones found:
     const notFound=document.getElementById('no-found-message');
     if(phones.length==0){
       notFound.classList.remove('d-none')
@@ -17,7 +17,7 @@ const displayPhone=phones=>{
     else{
       notFound.classList.add('d-none')
     }
-    // display all phones
+   // display all phones
     phones.forEach(phone => {
         const div=document.createElement('div')
         div.classList.add('col');
@@ -32,11 +32,30 @@ const displayPhone=phones=>{
         `
       phoneContainer.appendChild(div)
     });
+// stop loader
+toggleSpinner(false);
+
+
 }
-const search=()=>{
-  const inputField=document.getElementById('input')
-  const inputFieldValue=inputField.value;
-  loadPhone(inputFieldValue)
-  inputField.value='';
+// search button click
+    const search=()=>{
+    // start loader
+    toggleSpinner(true);
+    const inputField=document.getElementById('input')
+    const inputFieldValue=inputField.value;
+    loadPhone(inputFieldValue)
+    inputField.value='';
+}
+
+
+// loader condition
+  const toggleSpinner=isLoading=>{
+  const loaderSection=document.getElementById('loader')
+  if(isLoading){
+    loaderSection.classList.remove('d-none')
+  }
+  else{
+    loaderSection.classList.add('d-none')
+  }
 }
 // loadPhone();
