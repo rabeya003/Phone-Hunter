@@ -33,11 +33,12 @@ const displayPhone=(phones,dataLimit)=>{
         div.classList.add('col');
         div.innerHTML=` 
         <div class="card p-4">
-        <img src="${phone.image}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">${phone.phone_name}</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
+          <img src="${phone.image}" class="card-img-top" alt="...">
+          <div class="card-body">
+              <h5 class="card-title">${phone.phone_name}</h5>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <button onclick="loadPhoneDetails('${phone.slug}')" href="#" class="btn btn-primary">Show Details</button>
+          </div>
       </div>
         `
       phoneContainer.appendChild(div)
@@ -56,14 +57,17 @@ const processSearch=(dataLimit)=>{
   // inputField.value='';
 }
 
-
-
 // search button click
     const search=()=>{
       processSearch(10);
 
 }
-
+//Don't need to click just Press Enter and get the output...
+document.getElementById('input').addEventListener('keypress',function(e){
+  if(e.key ==='Enter'){
+    processSearch(10);
+  }
+});
 
 // loader condition
   const toggleSpinner=isLoading=>{
@@ -76,10 +80,16 @@ const processSearch=(dataLimit)=>{
     }
 }
 
-
 // there is no data limit->SHOW-ALL
   document.getElementById('btn-showAll').addEventListener('click',function(){
     processSearch();
 })
+
+  const loadPhoneDetails=async (id)=>{
+  const url=`https://openapi.programming-hero.com/api/phone/${id}`
+  const res=await fetch(url);
+  const data=await res.json();
+  console.log(data.data);
+}
 
 // loadPhone();

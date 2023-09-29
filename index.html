@@ -13,16 +13,24 @@
   </head>
   <body>
     <header><h1 class="container">Welcome to Phone hunt</h1></header>
-    <main>
-      <section class="container">
-        <input type="text" id="input" placeholder="Enter phone name " />
-        <button onclick="search()" type="button" class="btn btn-primary">
-          Search
-        </button>
+    <main class="container">
+      <!-- Search button and input -->
+      <section>
+        <div class="mb-3 w-50">
+          <input
+            type="email"
+            id="input"
+            placeholder="Enter phone name "
+            class="form-control"
+          />
+          <button onclick="search()" type="button" class="btn btn-primary">
+            Search
+          </button>
+        </div>
       </section>
 
-      <section class="container">
-        <!-- display phones -->
+      <section>
+        <!-- display Search phones -->
         <div
           id="phone-container"
           class="row row-cols-1 row-cols-md-3 g-4"
